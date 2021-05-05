@@ -6,6 +6,8 @@ package main
 import (
 	"log"
 
+	"github.com/TechharaInc/Yfitops/discord"
+	"github.com/TechharaInc/Yfitops/server"
 	"github.com/joho/godotenv"
 )
 
@@ -15,4 +17,6 @@ func main() {
 		log.Fatal("AAGH .env COULD NOT LOADED!")
 	}
 
+	server.NewHttpServer()
+	discord.RunDiscordClient()
 }

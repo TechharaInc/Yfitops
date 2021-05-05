@@ -11,7 +11,7 @@ type SpotifyClient struct {
 	auth spotify.Authenticator
 }
 
-func NewSpotifyClient() *SpotifyClient {
+func NewSpotifyClient() (*SpotifyClient, error) {
 	auth := spotify.NewAuthenticator(
 		os.Getenv("REDIRECT_URL"),
 		spotify.ScopeUserReadPrivate,
@@ -20,8 +20,8 @@ func NewSpotifyClient() *SpotifyClient {
 	auth.SetAuthInfo(os.Getenv("SPOTIFY_CLIENT_ID"), os.Getenv("SPOTIFY_CLIENT_SECRET"))
 
 	return &SpotifyClient{
-		auth: auth,
-	}
+		auth,
+	}, nil
 }
 
 func (c *SpotifyClient) GetAuthURL(state string) string {
